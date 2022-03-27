@@ -8,8 +8,9 @@ session_start();
  $query = "SELECT * FROM users WHERE id='$id'";
 $result = mysqli_query($conn,$query);
 $data = mysqli_fetch_assoc($result);
-$goalQuery = "SELECT * FROM goal";
-    $goalResult = mysqli_query($conn,$goalQuery);
+$goalQuery = "SELECT * FROM goal WHERE user_id = '$id'";
+$goalResult = mysqli_query($conn , $goalQuery);;
+  
 
 ?>
 <!DOCTYPE html>
@@ -21,9 +22,9 @@ $goalQuery = "SELECT * FROM goal";
       <body>
         <style>
           body{
-            background:url('img/abc.jpg');
-            background-position:center ;
-            background-size:150vh;
+            background:url('img/abc.png');
+            background-position:center;
+            background-size:cover;
             background-repeat:no-repeat;
             
           }
@@ -32,7 +33,7 @@ $goalQuery = "SELECT * FROM goal";
         <div class="img">
           </div>
         </div>
-          
+            <?php include('include/nav.php');?>    
             <?php include('db/connect.php');?>    
           
             
@@ -60,12 +61,12 @@ $goalQuery = "SELECT * FROM goal";
                       <option value="Running">Running</option>
                     </select>
                     </div>
-                    <br><br><br> 
+                    <br><br> 
                     <div class="date" style="float:left;">
                        <label for="" >Accomplish Date</label>
                        <input type="datetime-local" name="accomplish_date" class="form-control">
                   </div>
-                  <br><br><br>
+                  <br>
                     <button type="submit" class="btn btn-dark">Save</button>
                 </form>
                <?php include('include/message.php'); ?>
